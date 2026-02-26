@@ -1,1 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pagamento - IMD Parts</title>
 
+<style>
+body{
+    margin:0;
+    font-family: Arial, Helvetica, sans-serif;
+    background:#f4f4f4;
+}
+
+header{
+    background:#111;
+    color:white;
+    padding:20px;
+    text-align:center;
+}
+
+.container{
+    max-width:900px;
+    margin:50px auto;
+    background:white;
+    padding:40px;
+    border-radius:10px;
+    box-shadow:0 4px 20px rgba(0,0,0,0.1);
+}
+
+h2{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.metodos{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:30px;
+}
+
+.card{
+    border:1px solid #ddd;
+    padding:20px;
+    border-radius:10px;
+    text-align:center;
+}
+
+button{
+    background:#0A1F44;
+    color:white;
+    border:none;
+    padding:10px 20px;
+    border-radius:5px;
+    cursor:pointer;
+    margin-top:15px;
+}
+
+button:hover{
+    background:#061330;
+}
+
+input{
+    width:100%;
+    padding:10px;
+    margin-top:10px;
+    border:1px solid #ccc;
+    border-radius:5px;
+}
+
+.qrcode{
+    margin-top:15px;
+}
+
+footer{
+    background:#111;
+    color:white;
+    text-align:center;
+    padding:15px;
+    margin-top:50px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Pagamento Seguro - IMD Parts</h1>
+</header>
+
+<div class="container">
+<h2>Escolha o Método de Pagamento</h2>
+
+<div class="metodos">
+
+<!-- CARTÃO -->
+<div class="card">
+<h3>💳 Cartão de Crédito</h3>
+<input type="text" placeholder="Número do Cartão">
+<input type="text" placeholder="Nome no Cartão">
+<input type="text" placeholder="Validade (MM/AA)">
+<input type="text" placeholder="CVV">
+<button onclick="alert('Pagamento aprovado (simulação).')">Pagar</button>
+</div>
+
+<!-- BOLETO -->
+<div class="card">
+<h3>🧾 Boleto Bancário</h3>
+<p>Gere um boleto fictício para pagamento.</p>
+<button onclick="alert('Boleto gerado (simulação).')">Gerar Boleto</button>
+</div>
+
+<!-- PIX -->
+<div class="card">
+<h3>📲 Pix</h3>
+<p>Escaneie o QR Code abaixo:</p>
+
+<div class="qrcode">
+<!--  -->
+<img src="00020126330014br.gov.bcb.pix01114790392384652040000530398654102500000.005802BR5912Helder Souza6009Sao Paulo62240520daqr12028951452618866304A475" width="180">
+</div>
+
+<p><strong>Chave Pix:</strong></p>
+<p>47903923846</p>
+
+<button onclick="alert('Após o pagamento, envie o comprovante.')">
+Já Paguei
+</button>
+</div>
+
+</div>
+</div>
+
+<footer>
+© 2026 IMD Parts Dealerships
+</footer>
+
+</body>
+</html>
