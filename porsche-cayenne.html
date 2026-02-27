@@ -3,141 +3,238 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Porsche Cayenne - IMD Parts</title>
+<title>Porsche Cayenne – IMD Parts</title>
 
 <style>
-body{
+
+*{
     margin:0;
+    padding:0;
+    box-sizing:border-box;
     font-family: Arial, Helvetica, sans-serif;
-    background:#0f0f0f;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+:root{
+    --dark:#111;
+    --light:#f4f4f4;
+    --accent:#1C1C1C;
+}
+
+body{
+    background:var(--light);
+    color:#222;
+    line-height:1.6;
+}
+
+/* HERO */
+.hero{
+    height:90vh;
+    background:linear-gradient(rgba(0,0,0,0.55),rgba(0,0,0,0.55)),
+    url("https://images.unsplash.com/photo-1616789916437-bbf724d10b2c?q=80&w=2000") center/cover no-repeat;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
     color:white;
 }
 
-header{
-    background:#111;
-    padding:20px;
-    text-align:center;
-}
-
-.container{
-    max-width:1100px;
-    margin:50px auto;
-    padding:20px;
-}
-
-.car{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:40px;
-    align-items:center;
-}
-
-.car img{
-    width:100%;
-    border-radius:10px;
+.hero h1{
+    font-size:58px;
+    letter-spacing:3px;
 }
 
 .price{
-    font-size:32px;
-    color:#00ff88;
-    margin:20px 0;
+    margin-top:15px;
+    font-size:26px;
+    opacity:0.9;
 }
 
-.badge{
+.buttons{
+    margin-top:35px;
+}
+
+.btn{
+    background:white;
+    color:black;
+    padding:14px 30px;
+    border-radius:6px;
+    margin:10px;
     display:inline-block;
-    background:#ff9800;
-    padding:5px 10px;
-    border-radius:5px;
-    font-size:12px;
-    margin-bottom:10px;
-}
-
-button{
-    background:#0A1F44;
-    color:white;
-    border:none;
-    padding:12px 25px;
-    border-radius:5px;
     cursor:pointer;
-    margin-right:10px;
-    font-size:16px;
+    transition:0.3s ease;
+    font-weight:600;
 }
 
-button:hover{
-    background:#061330;
+.btn:hover{
+    transform:translateY(-4px);
+    box-shadow:0 10px 25px rgba(0,0,0,0.25);
 }
 
+/* CONTAINER */
+.container{
+    max-width:1100px;
+    margin:100px auto;
+    padding:0 20px;
+}
+
+.section-title{
+    font-size:30px;
+    margin-bottom:25px;
+    position:relative;
+}
+
+.section-title::after{
+    content:"";
+    width:60px;
+    height:3px;
+    background:black;
+    position:absolute;
+    bottom:-8px;
+    left:0;
+}
+
+/* FICHA */
 .specs{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:30px;
     margin-top:40px;
-    line-height:1.8;
+    font-size:17px;
 }
 
-footer{
-    background:#111;
+/* CORES */
+.colors{
+    display:flex;
+    gap:40px;
+    margin-top:40px;
+}
+
+.color-box{
     text-align:center;
-    padding:20px;
+    transition:0.4s ease;
+}
+
+.color-circle{
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    margin:0 auto;
+    border:2px solid #ccc;
+    transition:0.4s ease;
+}
+
+.color-name{
+    margin-top:12px;
+    font-size:14px;
+    opacity:0.7;
+    transition:0.4s ease;
+}
+
+.color-box:hover{
+    transform:translateY(-5px);
+}
+
+.color-box:hover .color-circle{
+    transform:scale(1.2);
+    box-shadow:0 0 20px rgba(0,0,0,0.2);
+}
+
+.color-box:hover .color-name{
+    opacity:1;
+}
+
+/* GALERIA */
+.gallery{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:25px;
     margin-top:50px;
 }
+
+.gallery img{
+    width:100%;
+    border-radius:8px;
+    transition:0.4s ease;
+}
+
+.gallery img:hover{
+    transform:scale(1.02);
+}
+
+/* FOOTER */
+footer{
+    background:#111;
+    color:white;
+    text-align:center;
+    padding:30px;
+    margin-top:100px;
+}
+
 </style>
 </head>
 
 <body>
 
-<header>
+<section class="hero">
+<div>
 <h1>Porsche Cayenne</h1>
-</header>
+<div class="price">R$ 899.000</div>
+
+<div class="buttons">
+<div class="btn" onclick="window.location.href='pagamento.html'">Comprar</div>
+<div class="btn" onclick="window.location.href='agendamento.html'">Agendar Test Drive</div>
+</div>
+</div>
+</section>
 
 <div class="container">
 
-<div class="car">
-
-<img src="https://cdn.motor1.com/images/mgl/bgm3W6/s1/2024-porsche-cayenne-turbo-e-hybrid-front-3-4.jpg">
-
-<div>
-<div class="badge">⭐ SUV Premium</div>
-
-<h2>2024 Porsche Cayenne Turbo</h2>
-
-<div class="price">R$ 989.000</div>
-
-<p>
-SUV de luxo com desempenho esportivo e conforto absoluto.
-Perfeita para quem quer potência e espaço.
-</p>
-
-<p><strong>Cores disponíveis:</strong><br>
-Preto Jet<br>
-Cinza Crayon<br>
-Branco Carrara<br>
-Azul Metálico
-</p>
-
-<br>
-
-<button onclick="window.location.href='pagamento.html'">
-Comprar Agora
-</button>
-
-<button onclick="window.location.href='agendamento.html'">
-Agendar Test Drive
-</button>
-
-</div>
-
-</div>
+<h2 class="section-title">Ficha Técnica</h2>
 
 <div class="specs">
-<h3>Ficha Técnica</h3>
+<div>
+Motor: 3.0 V6 Turbo<br>
+Potência: 340 cv<br>
+0–100 km/h: 6.2s
+</div>
 
-Potência: 440 cv<br>
-Motor: V8 Biturbo<br>
-0-100 km/h: 4.5s<br>
+<div>
+Transmissão: Tiptronic S<br>
 Tração: Integral AWD<br>
-Transmissão: Tiptronic 8 marchas<br>
-Interior: Couro Premium + Painel Digital Curvo<br>
-Porta-malas: 770 litros<br>
-Quilometragem: 0 km<br>
+Quilometragem: 0 km
+</div>
+</div>
 
+<h2 class="section-title">Cores de Fábrica Disponíveis</h2>
+
+<div class="colors">
+
+<div class="color-box">
+<div class="color-circle" style="background:#ffffff;"></div>
+<div class="color-name">Branco Carrara</div>
+</div>
+
+<div class="color-box">
+<div class="color-circle" style="background:#1c1c1c;"></div>
+<div class="color-name">Preto Jet</div>
+</div>
+
+<div class="color-box">
+<div class="color-circle" style="background:#6e6e6e;"></div>
+<div class="color-name">Cinza Quartz</div>
+</div>
+
+</div>
+
+<h2 class="section-title">Galeria</h2>
+
+<div class="gallery">
+<img src="https://images.unsplash.com/photo-1616789916437-bbf724d10b2c?q=80&w=2000">
+<img src="https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?q=80&w=2000">
 </div>
 
 </div>
