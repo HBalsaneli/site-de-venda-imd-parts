@@ -21,36 +21,59 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+html{
+    scroll-behavior:smooth;
+}
+
 body{
     background:var(--light);
     color:var(--dark);
 }
 
-/* HEADER */
+/* HEADER PREMIUM */
 header{
-    background:var(--dark);
+    background:rgba(17,17,17,0.95);
+    backdrop-filter: blur(10px);
     color:white;
     padding:20px 5%;
     display:flex;
     justify-content:space-between;
     align-items:center;
+    position:sticky;
+    top:0;
+    z-index:1000;
 }
 
 nav a{
     color:white;
     text-decoration:none;
-    margin-left:20px;
-    font-weight:bold;
+    margin-left:25px;
+    font-weight:500;
+    position:relative;
 }
 
-/* HERO - CORRIGIDO */
+nav a::after{
+    content:'';
+    width:0;
+    height:2px;
+    background:#00ff88;
+    position:absolute;
+    left:0;
+    bottom:-5px;
+    transition:0.3s;
+}
+
+nav a:hover::after{
+    width:100%;
+}
+
+/* HERO */
 .hero{
     height:80vh;
     background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)),
     url('https://wallpapers.com/images/hd/project-cars-4k-audi-and-porsche-3kqlchoust28gzva.jpg');
     background-size:cover;
     background-position:center;
-    background-repeat:no-repeat;
     display:flex;
     justify-content:center;
     align-items:center;
@@ -66,7 +89,7 @@ nav a{
 
 /* SECTION */
 section{
-    padding:70px 5%;
+    padding:100px 5%;
 }
 
 .section-title{
@@ -82,13 +105,20 @@ section{
     gap:30px;
 }
 
+/* CARD PREMIUM */
 .card{
     background:white;
-    border-radius:10px;
+    border-radius:15px;
     overflow:hidden;
-    box-shadow:0 4px 15px rgba(0,0,0,0.08);
+    box-shadow:0 6px 20px rgba(0,0,0,0.06);
     display:flex;
     flex-direction:column;
+    transition: all 0.3s ease;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 12px 30px rgba(0,0,0,0.15);
 }
 
 .card img{
@@ -112,42 +142,29 @@ section{
     margin-bottom:15px;
 }
 
+/* BOTÕES PREMIUM */
 button{
     background:var(--primary);
     color:white;
     border:none;
-    padding:10px;
-    border-radius:5px;
+    padding:12px;
+    border-radius:8px;
     cursor:pointer;
+    font-weight:600;
+    transition:all 0.3s ease;
 }
 
 button:hover{
-    background:#061330;
+    transform:translateY(-3px);
+    box-shadow:0 8px 20px rgba(0,0,0,0.2);
 }
 
+/* FOOTER */
 footer{
     background:var(--dark);
     color:white;
     text-align:center;
     padding:20px;
-}
-
-/* MODAL */
-.modal{
-    display:none;
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,0.7);
-    justify-content:center;
-    align-items:center;
-}
-
-.modal-content{
-    background:white;
-    padding:30px;
-    border-radius:10px;
-    text-align:center;
-    max-width:400px;
 }
 </style>
 </head>
@@ -171,7 +188,6 @@ footer{
     </div>
 </section>
 
-<!-- CONCESSIONÁRIA -->
 <section id="carros">
 <h2 class="section-title">Modelos Disponíveis</h2>
 
@@ -182,9 +198,7 @@ footer{
 <div class="card-content">
 <h3>Porsche 911 Turbo</h3>
 <p>Motor 3.0 biturbo, 450cv, interior premium e desempenho esportivo icônico.</p>
-<button onclick="window.location.href='porsche-911.html'">
-Ver Detalhes
-</button>
+<button onclick="window.location.href='porsche-911.html'">Ver Detalhes</button>
 </div>
 </div>
 
@@ -193,9 +207,7 @@ Ver Detalhes
 <div class="card-content">
 <h3>Porsche Cayenne</h3>
 <p>SUV de luxo com 440cv, conforto absoluto e tecnologia de ponta.</p>
-<button onclick="window.location.href='porsche-cayenne.html'">
-Ver Detalhes
-</button>
+<button onclick="window.location.href='porsche-cayenne.html'">Ver Detalhes</button>
 </div>
 </div>
 
@@ -204,9 +216,7 @@ Ver Detalhes
 <div class="card-content">
 <h3>Audi RS6 Avant</h3>
 <p>Motor V8 biturbo, 600cv, sistema quattro e acabamento premium.</p>
-<button onclick="window.location.href='audi-rs6.html'">
-Ver Detalhes
-</button>
+<button onclick="window.location.href='audi-rs6.html'">Ver Detalhes</button>
 </div>
 </div>
 
@@ -215,44 +225,15 @@ Ver Detalhes
 <div class="card-content">
 <h3>Audi R8 V10</h3>
 <p>Superesportivo com motor V10 aspirado e design agressivo.</p>
-<button onclick="window.location.href='audi-r8.html'">
-Ver Detalhes
-</button>
+<button onclick="window.location.href='audi-r8.html'">Ver Detalhes</button>
 </div>
 </div>
 
 </div>
 </section>
 
-<!-- PEÇAS -->
 <section id="pecas">
 <h2 class="section-title">Peças Originais</h2>
-
-<div class="cards">
-
-<div class="card">
-<img src="https://www.autoaccessoriesgarage.com/img/group/main/49/4912_1_lg.jpg">
-<div class="card-content">
-<h3>Kit Freio Esportivo</h3>
-<p>Discos ventilados e pastilhas de alta performance para máxima eficiência.</p>
-<button onclick="window.location.href='pagamento.html'">
-Comprar Agora
-</button>
-</div>
-</div>
-
-<div class="card">
-<img src="https://blog.athenastore.com.br/wp-content/uploads/2025/07/rodas-de-liga-leve.png">
-<div class="card-content">
-<h3>Rodas Liga Leve 22"</h3>
-<p>Redução de peso, design esportivo e compatibilidade Audi/Porsche.</p>
-<button onclick="window.location.href='pagamento.html'">
-Comprar Agora
-</button>
-</div>
-</div>
-
-</div>
 </section>
 
 <section id="contato">
@@ -263,25 +244,6 @@ Comprar Agora
 <footer>
 © 2026 IMD Parts Dealerships
 </footer>
-
-<!-- MODAL -->
-<div class="modal" id="modal">
-<div class="modal-content">
-<p id="textoModal"></p>
-<br>
-<button onclick="fecharModal()">Fechar</button>
-</div>
-</div>
-
-<script>
-function abrirModal(texto){
-document.getElementById("textoModal").innerText = texto;
-document.getElementById("modal").style.display = "flex";
-}
-function fecharModal(){
-document.getElementById("modal").style.display = "none";
-}
-</script>
 
 </body>
 </html>
