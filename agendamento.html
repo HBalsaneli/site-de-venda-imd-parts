@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agendamento de Serviços - IMD Parts</title>
+
+<style>
+body{
+    margin:0;
+    font-family: Arial, Helvetica, sans-serif;
+    background:#f4f4f4;
+}
+
+header{
+    background:#111;
+    color:white;
+    padding:20px;
+    text-align:center;
+}
+
+.container{
+    max-width:800px;
+    margin:50px auto;
+    background:white;
+    padding:40px;
+    border-radius:10px;
+    box-shadow:0 4px 20px rgba(0,0,0,0.1);
+}
+
+h2{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+form{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+input, select{
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:5px;
+}
+
+button{
+    background:#0A1F44;
+    color:white;
+    border:none;
+    padding:12px;
+    border-radius:5px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+button:hover{
+    background:#061330;
+}
+
+footer{
+    background:#111;
+    color:white;
+    text-align:center;
+    padding:15px;
+    margin-top:50px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Agendamento de Serviços</h1>
+</header>
+
+<div class="container">
+<h2>Agende sua Revisão ou Serviço Técnico</h2>
+
+<form action="https://formsubmit.co/souza.helder.2018@gmail.com" method="POST">
+
+<input type="text" name="nome" placeholder="Seu Nome" required>
+<input type="tel" name="telefone" placeholder="Telefone" required>
+<input type="text" name="veiculo" placeholder="Modelo do Veículo" required>
+
+<select name="servico" required>
+<option value="">Selecione o Serviço</option>
+<option>Revisão Completa</option>
+<option>Diagnóstico Técnico</option>
+<option>Troca de Peças</option>
+<option>Check-up Premium</option>
+</select>
+
+<input type="date" name="data" required>
+<input type="time" name="hora" required>
+
+<button type="submit">Confirmar Agendamento</button>
+
+</form>
+</div>
+
+<footer>
+© 2026 IMD Parts Dealerships
+</footer>
+
+</body>
+</html>
