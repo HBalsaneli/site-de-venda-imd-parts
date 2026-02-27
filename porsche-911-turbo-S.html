@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Porsche 911 Turbo – IMD Parts</title>
+<title>Porsche 911 Turbo S – IMD Parts</title>
 
 <style>
 
@@ -22,7 +22,7 @@ html{
 :root{
     --dark:#111;
     --light:#f6f6f6;
-    --accent:#0A1F44;
+    --accent:#111;
 }
 
 /* BODY */
@@ -34,14 +34,50 @@ body{
 
 /* HERO */
 .hero{
+    position:relative;
     height:90vh;
-    background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),
-    url("https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=2000") center/cover no-repeat;
+    overflow:hidden;
     display:flex;
     justify-content:center;
     align-items:center;
     text-align:center;
     color:white;
+}
+
+.video-container{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:-2;
+    overflow:hidden;
+}
+
+.video-container iframe{
+    width:100vw;
+    height:56.25vw; 
+    min-height:100vh;
+    min-width:177.77vh;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+}
+
+.overlay{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.55);
+    z-index:-1;
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
 }
 
 .hero h1{
@@ -138,7 +174,6 @@ body{
     transition:0.4s ease;
 }
 
-/* ANIMAÇÃO SUAVE */
 .color-box:hover{
     transform:translateY(-5px);
 }
@@ -186,15 +221,28 @@ footer{
 
 <!-- HERO -->
 <section class="hero">
-<div>
-<h1>Porsche 911 Turbo</h1>
-<div class="price">R$ 1.149.000</div>
+
+<div class="video-container">
+<iframe 
+src="https://www.youtube.com/embed/GXwaQIZJkp8?autoplay=1&mute=1&loop=1&playlist=GXwaQIZJkp8&controls=0&modestbranding=1&rel=0"
+frameborder="0"
+allow="autoplay; fullscreen"
+allowfullscreen>
+</iframe>
+</div>
+
+<div class="overlay"></div>
+
+<div class="hero-content">
+<h1>Porsche 911 Turbo S</h1>
+<div class="price">R$ 1.509.000</div>
 
 <div class="buttons">
 <div class="btn" onclick="window.location.href='pagamento.html'">Comprar</div>
 <div class="btn" onclick="window.location.href='agendamento.html'">Agendar Test Drive</div>
 </div>
 </div>
+
 </section>
 
 <!-- CONTEÚDO -->
@@ -204,14 +252,14 @@ footer{
 
 <div class="specs">
 <div>
-Motor: 3.0 Biturbo<br>
-Potência: 450 cv<br>
-0–100 km/h: 3.5s
+Motor: 3.8 Boxer Biturbo<br>
+Potência: 650 cv<br>
+0–100 km/h: ~2.7s<br>
 </div>
 
 <div>
 Transmissão: PDK 8 marchas<br>
-Tração: Traseira<br>
+Tração: Integral AWD<br>
 Quilometragem: 0 km
 </div>
 </div>
@@ -221,17 +269,17 @@ Quilometragem: 0 km
 <div class="colors">
 
 <div class="color-box">
-<div class="color-circle" style="background:white;"></div>
+<div class="color-circle" style="background:#ffffff;"></div>
 <div class="color-name">Branco Carrara</div>
 </div>
 
 <div class="color-box">
-<div class="color-circle" style="background:black;"></div>
+<div class="color-circle" style="background:#000000;"></div>
 <div class="color-name">Preto Jet</div>
 </div>
 
 <div class="color-box">
-<div class="color-circle" style="background:red;"></div>
+<div class="color-circle" style="background:#b11226;"></div>
 <div class="color-name">Vermelho Guards</div>
 </div>
 
@@ -240,7 +288,7 @@ Quilometragem: 0 km
 <h2 class="section-title">Galeria</h2>
 
 <div class="gallery">
-<img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=2000">
+<img src="https://images.unsplash.com/photo-1616788494707-ec28f08d05e6?q=80&w=2000">
 <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=2000">
 </div>
 
