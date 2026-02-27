@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Audi R8 V10 – IMD Parts</title>
+<title>Audi R8 – IMD Parts</title>
 
 <style>
 
@@ -34,25 +34,89 @@ body{
 
 /* HERO */
 .hero{
+    position:relative;
     height:90vh;
-    background:linear-gradient(rgba(0,0,0,0.55),rgba(0,0,0,0.55)),
-    url("https://images.unsplash.com/photo-1619767886558-efdc7b9e047d?q=80&w=2000") center/cover no-repeat;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+    overflow:hidden;
     text-align:center;
     color:white;
+}
+
+/* VIDEO */
+.video-container{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:-2;
+    overflow:hidden;
+}
+
+.video-container iframe{
+    width:100vw;
+    height:56.25vw;
+    min-height:100vh;
+    min-width:177.77vh;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+}
+
+/* OVERLAY */
+.overlay{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.55);
+    z-index:-1;
+}
+
+/* HERO CONTENT */
+.hero-content{
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%, -50%);
+    z-index:2;
+    opacity:0;
+    animation: fadeIn 1.5s ease forwards;
+    transition: all 1.2s cubic-bezier(.77,0,.18,1);
+}
+
+@keyframes fadeIn{
+    to{ opacity:1; }
+}
+
+.hero-content.move{
+    left:60px;
+    bottom:60px;
+    top:auto;
+    transform:none;
+    text-align:left;
+}
+
+.hero-content.move h1{
+    font-size:42px;
+}
+
+.hero-content.move .price{
+    font-size:20px;
 }
 
 .hero h1{
     font-size:60px;
     letter-spacing:3px;
+    transition:0.4s;
 }
 
 .price{
     margin-top:15px;
     font-size:28px;
     opacity:0.9;
+    transition:0.4s;
 }
 
 /* BOTÕES */
@@ -183,10 +247,21 @@ footer{
 
 <body>
 
-<!-- HERO -->
 <section class="hero">
-<div>
-<h1>Audi R8 V10</h1>
+
+<div class="video-container">
+<iframe 
+src="https://www.youtube.com/embed/3wiuFnTdq8Y?autoplay=1&mute=1&loop=1&playlist=3wiuFnTdq8Y&controls=0&modestbranding=1&rel=0"
+frameborder="0"
+allow="autoplay; fullscreen"
+allowfullscreen>
+</iframe>
+</div>
+
+<div class="overlay"></div>
+
+<div class="hero-content">
+<h1>Audi R8</h1>
 <div class="price">R$ 1.349.000</div>
 
 <div class="buttons">
@@ -194,9 +269,9 @@ footer{
 <div class="btn" onclick="window.location.href='agendamento.html'">Agendar Test Drive</div>
 </div>
 </div>
+
 </section>
 
-<!-- CONTEÚDO -->
 <div class="container">
 
 <h2 class="section-title">Ficha Técnica</h2>
@@ -205,7 +280,7 @@ footer{
 <div>
 Motor: 5.2 V10 FSI Aspirado<br>
 Potência: 610 cv<br>
-0–100 km/h: 3.2s
+0–100 km/h: 3.2s<br>
 </div>
 
 <div>
@@ -230,7 +305,7 @@ Quilometragem: 0 km
 </div>
 
 <div class="color-box">
-<div class="color-circle" style="background:#c3002f;"></div>
+<div class="color-circle" style="background:#bb0a21;"></div>
 <div class="color-name">Vermelho Tango</div>
 </div>
 
@@ -239,8 +314,10 @@ Quilometragem: 0 km
 <h2 class="section-title">Galeria</h2>
 
 <div class="gallery">
-<img src="https://images.unsplash.com/photo-1619767886558-efdc7b9e047d?q=80&w=2000">
-<img src="https://images.unsplash.com/photo-1605559424843-1efb4f1d5c52?q=80&w=2000">
+<img src="https://pixabay.com/pt/images/download/652234-automobile-3476593_1920.jpg">
+<img src="https://cdn.pixabay.com/photo/2019/10/09/09/32/audi-4536924_1280.jpg">
+<img src="https://cdn.pixabay.com/photo/2018/08/21/01/15/audi-3620408_1280.jpg">
+<img src="https://pixabay.com/pt/images/download/glavo-audi-r8-5871386_1920.jpg">
 </div>
 
 </div>
@@ -248,6 +325,14 @@ Quilometragem: 0 km
 <footer>
 © 2026 IMD Parts Dealerships
 </footer>
+
+<script>
+window.addEventListener("load", function(){
+    setTimeout(function(){
+        document.querySelector(".hero-content").classList.add("move");
+    }, 4000);
+});
+</script>
 
 </body>
 </html>
