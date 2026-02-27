@@ -37,13 +37,10 @@ body{
     position:relative;
     height:90vh;
     overflow:hidden;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
     color:white;
 }
 
+/* VIDEO */
 .video-container{
     position:absolute;
     top:0;
@@ -56,39 +53,75 @@ body{
 
 .video-container iframe{
     width:100vw;
-    height:56.25vw; 
+    height:56.25vw;
     min-height:100vh;
     min-width:177.77vh;
     position:absolute;
     top:50%;
     left:50%;
-    transform:translate(-50%, -50%);
+    transform:translate(-50%, -50%) scale(1);
+    animation: zoomVideo 20s ease-in-out infinite alternate;
 }
 
+@keyframes zoomVideo{
+    from{ transform:translate(-50%, -50%) scale(1); }
+    to{ transform:translate(-50%, -50%) scale(1.08); }
+}
+
+/* OVERLAY */
 .overlay{
     position:absolute;
-    top:0;
-    left:0;
     width:100%;
     height:100%;
     background:rgba(0,0,0,0.55);
     z-index:-1;
 }
 
+/* HERO CONTENT */
 .hero-content{
-    position:relative;
-    z-index:2;
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%, -50%);
+    text-align:center;
+    opacity:0;
+    animation: fadeIn 2s ease forwards;
+    transition: all 1.4s cubic-bezier(.77,0,.18,1);
 }
 
+@keyframes fadeIn{
+    to{ opacity:1; }
+}
+
+/* ESTADO FINAL */
+.hero-content.move{
+    left:60px;
+    bottom:60px;
+    top:auto;
+    transform:none;
+    text-align:left;
+}
+
+.hero-content.move h1{
+    font-size:42px;
+}
+
+.hero-content.move .price{
+    font-size:20px;
+}
+
+/* TEXTOS */
 .hero h1{
     font-size:60px;
     letter-spacing:3px;
+    transition:0.5s;
 }
 
 .price{
     margin-top:15px;
     font-size:28px;
     opacity:0.9;
+    transition:0.5s;
 }
 
 /* BOTÕES */
@@ -110,7 +143,7 @@ body{
 
 .btn:hover{
     transform:translateY(-4px);
-    box-shadow:0 10px 25px rgba(0,0,0,0.25);
+    box-shadow:0 10px 25px rgba(0,0,0,0.35);
 }
 
 /* CONTAINER */
@@ -180,7 +213,7 @@ body{
 
 .color-box:hover .color-circle{
     transform:scale(1.2);
-    box-shadow:0 0 20px rgba(0,0,0,0.2);
+    box-shadow:0 0 20px rgba(0,0,0,0.3);
 }
 
 .color-box:hover .color-name{
@@ -219,7 +252,6 @@ footer{
 
 <body>
 
-<!-- HERO -->
 <section class="hero">
 
 <div class="video-container">
@@ -245,60 +277,33 @@ allowfullscreen>
 
 </section>
 
-<!-- CONTEÚDO -->
 <div class="container">
-
 <h2 class="section-title">Ficha Técnica</h2>
-
 <div class="specs">
 <div>
 Motor: 3.8 Boxer Biturbo<br>
 Potência: 650 cv<br>
 0–100 km/h: ~2.7s<br>
 </div>
-
 <div>
 Transmissão: PDK 8 marchas<br>
 Tração: Integral AWD<br>
 Quilometragem: 0 km
 </div>
 </div>
-
-<h2 class="section-title">Cores de Fábrica Disponíveis</h2>
-
-<div class="colors">
-
-<div class="color-box">
-<div class="color-circle" style="background:#ffffff;"></div>
-<div class="color-name">Branco Carrara</div>
-</div>
-
-<div class="color-box">
-<div class="color-circle" style="background:#000000;"></div>
-<div class="color-name">Preto Jet</div>
-</div>
-
-<div class="color-box">
-<div class="color-circle" style="background:#b11226;"></div>
-<div class="color-name">Vermelho Guards</div>
-</div>
-
-</div>
-
-<h2 class="section-title">Galeria</h2>
-
-<div class="gallery">
-<img src="https://autoentusiastas.com.br/ae/wp-content/uploads/2022/02/AE-Porsche-911-Turbo-S-023-800x450.jpeg">
-<img src="https://autoentusiastas.com.br/ae/wp-content/uploads/2022/02/AE-Porsche-911-Turbo-S-006-800x450.jpeg">
-<img src="https://autoentusiastas.com.br/ae/wp-content/uploads/2022/02/AE-Porsche-911-Turbo-S-005-750x421.jpeg">
-<img src="https://autoentusiastas.com.br/ae/wp-content/uploads/2022/02/AE-Porsche-911-Turbo-S-030-800x450.jpeg">
-</div>
-
 </div>
 
 <footer>
 © 2026 IMD Parts Dealerships
 </footer>
+
+<script>
+window.addEventListener("load", function(){
+    setTimeout(function(){
+        document.querySelector(".hero-content").classList.add("move");
+    }, 4000);
+});
+</script>
 
 </body>
 </html>
