@@ -7,6 +7,7 @@
 
 <style>
 
+/* RESET */
 *{
     margin:0;
     padding:0;
@@ -20,10 +21,11 @@ html{
 
 :root{
     --dark:#111;
-    --light:#f4f4f4;
-    --accent:#1C1C1C;
+    --light:#f6f6f6;
+    --accent:#111;
 }
 
+/* BODY */
 body{
     background:var(--light);
     color:#222;
@@ -32,34 +34,99 @@ body{
 
 /* HERO */
 .hero{
+    position:relative;
     height:90vh;
-    background:linear-gradient(rgba(0,0,0,0.55),rgba(0,0,0,0.55)),
-    url("https://images.unsplash.com/photo-1616789916437-bbf724d10b2c?q=80&w=2000") center/cover no-repeat;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+    overflow:hidden;
     text-align:center;
     color:white;
 }
 
+/* VIDEO */
+.video-container{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:-2;
+    overflow:hidden;
+}
+
+.video-container iframe{
+    width:100vw;
+    height:56.25vw;
+    min-height:100vh;
+    min-width:177.77vh;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+}
+
+/* OVERLAY */
+.overlay{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.55);
+    z-index:-1;
+}
+
+/* HERO CONTENT */
+.hero-content{
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%, -50%);
+    z-index:2;
+    opacity:0;
+    animation: fadeIn 1.5s ease forwards;
+    transition: all 1.2s cubic-bezier(.77,0,.18,1);
+}
+
+@keyframes fadeIn{
+    to{ opacity:1; }
+}
+
+.hero-content.move{
+    left:60px;
+    bottom:60px;
+    top:auto;
+    transform:none;
+    text-align:left;
+}
+
+.hero-content.move h1{
+    font-size:42px;
+}
+
+.hero-content.move .price{
+    font-size:20px;
+}
+
 .hero h1{
-    font-size:58px;
+    font-size:60px;
     letter-spacing:3px;
+    transition:0.4s;
 }
 
 .price{
     margin-top:15px;
-    font-size:26px;
+    font-size:28px;
     opacity:0.9;
+    transition:0.4s;
 }
 
+/* BOTÕES */
 .buttons{
     margin-top:35px;
 }
 
 .btn{
-    background:white;
-    color:black;
+    background:var(--accent);
+    color:white;
     padding:14px 30px;
     border-radius:6px;
     margin:10px;
@@ -81,8 +148,9 @@ body{
     padding:0 20px;
 }
 
+/* TITULOS */
 .section-title{
-    font-size:30px;
+    font-size:32px;
     margin-bottom:25px;
     position:relative;
 }
@@ -91,19 +159,19 @@ body{
     content:"";
     width:60px;
     height:3px;
-    background:black;
+    background:var(--accent);
     position:absolute;
     bottom:-8px;
     left:0;
 }
 
-/* FICHA */
+/* FICHA TECNICA */
 .specs{
     display:grid;
     grid-template-columns:1fr 1fr;
     gap:30px;
     margin-top:40px;
-    font-size:17px;
+    font-size:18px;
 }
 
 /* CORES */
@@ -167,7 +235,7 @@ body{
 
 /* FOOTER */
 footer{
-    background:#111;
+    background:var(--dark);
     color:white;
     text-align:center;
     padding:30px;
@@ -180,7 +248,19 @@ footer{
 <body>
 
 <section class="hero">
-<div>
+
+<div class="video-container">
+<iframe 
+src="https://www.youtube.com/embed/y7p3YC4CAGI?autoplay=1&mute=1&loop=1&playlist=y7p3YC4CAGI&controls=0&modestbranding=1&rel=0"
+frameborder="0"
+allow="autoplay; fullscreen"
+allowfullscreen>
+</iframe>
+</div>
+
+<div class="overlay"></div>
+
+<div class="hero-content">
 <h1>Porsche Cayenne</h1>
 <div class="price">R$ 899.000</div>
 
@@ -189,6 +269,7 @@ footer{
 <div class="btn" onclick="window.location.href='agendamento.html'">Agendar Test Drive</div>
 </div>
 </div>
+
 </section>
 
 <div class="container">
@@ -233,13 +314,28 @@ Quilometragem: 0 km
 <h2 class="section-title">Galeria</h2>
 
 <div class="gallery">
-<img src="https://images.unsplash.com/photo-1616789916437-bbf724d10b2c?q=80&w=2000">
-<img src="https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?q=80&w=2000">
+<img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgOjYKIKmw0yiWjGEoC13zavrUCj3GtAm-zvTi4CrlFBmmTw1CJnY_ARv3_0GWXcLZEkKmyqa4_2mIFr_WlAAfFaqDrdIHiCbZTaDZ8LNvfvBU7YbpOYn1KS1l669Uk-mmIxMPCLU6cBWkGoJmG0DCI3ilmLxyqycE6yUKLca-qxBfzx0-yGn4VEWKv/s600-rw/Novo-Porsche-Cayenne-2024%20%282%29.jpg">
+<img src="https://hips.hearstapps.com/hmg-prod/images/2024-porsche-cayenne-156-65ea08fb76304.jpg?crop=0.862xw:0.647xh;0.0994xw,0.209xh&resize=1400:*">
+<img src="https://hips.hearstapps.com/hmg-prod/images/2024-porsche-cayenne-130-65ea08ea9284b.jpg?crop=1xw:1xh;center,top;">
+<img src="https://quatrorodas.abril.com.br/wp-content/uploads/2023/05/Porsche-Cayenne-E-Hybrid-dirigido-por-QUATRO-RODAS-1.jpg?quality=70&strip=info&w=720&crop=1">
 </div>
 
 </div>
 
 <footer>
+© 2026 IMD Parts Dealerships
+</footer>
+
+<script>
+window.addEventListener("load", function(){
+    setTimeout(function(){
+        document.querySelector(".hero-content").classList.add("move");
+    }, 4000);
+});
+</script>
+
+</body>
+</html>
 © 2026 IMD Parts Dealerships
 </footer>
 
