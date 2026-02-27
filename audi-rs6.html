@@ -3,141 +3,244 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Audi RS6 Avant - IMD Parts</title>
+<title>Audi RS6 Avant – IMD Parts</title>
 
 <style>
-body{
+
+/* RESET */
+*{
     margin:0;
+    padding:0;
+    box-sizing:border-box;
     font-family: Arial, Helvetica, sans-serif;
-    background:#0f0f0f;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+:root{
+    --dark:#111;
+    --light:#f6f6f6;
+    --accent:#111;
+}
+
+/* BODY */
+body{
+    background:var(--light);
+    color:#222;
+    line-height:1.6;
+}
+
+/* HERO */
+.hero{
+    height:90vh;
+    background:linear-gradient(rgba(0,0,0,0.55),rgba(0,0,0,0.55)),
+    url("https://images.unsplash.com/photo-1617814076668-7b2d88f8cda7?q=80&w=2000") center/cover no-repeat;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
     color:white;
 }
 
-header{
-    background:#111;
-    padding:20px;
-    text-align:center;
-}
-
-.container{
-    max-width:1100px;
-    margin:50px auto;
-    padding:20px;
-}
-
-.car{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:40px;
-    align-items:center;
-}
-
-.car img{
-    width:100%;
-    border-radius:10px;
+.hero h1{
+    font-size:60px;
+    letter-spacing:3px;
 }
 
 .price{
-    font-size:32px;
-    color:#00ff88;
-    margin:20px 0;
+    margin-top:15px;
+    font-size:28px;
+    opacity:0.9;
 }
 
-.badge{
-    display:inline-block;
-    background:#9c27b0;
-    padding:5px 10px;
-    border-radius:5px;
-    font-size:12px;
-    margin-bottom:10px;
+/* BOTÕES */
+.buttons{
+    margin-top:35px;
 }
 
-button{
-    background:#0A1F44;
+.btn{
+    background:var(--accent);
     color:white;
-    border:none;
-    padding:12px 25px;
-    border-radius:5px;
+    padding:14px 30px;
+    border-radius:6px;
+    margin:10px;
+    display:inline-block;
     cursor:pointer;
-    margin-right:10px;
-    font-size:16px;
+    transition:0.3s ease;
+    font-weight:600;
 }
 
-button:hover{
-    background:#061330;
+.btn:hover{
+    transform:translateY(-4px);
+    box-shadow:0 10px 25px rgba(0,0,0,0.25);
 }
 
+/* CONTAINER */
+.container{
+    max-width:1100px;
+    margin:100px auto;
+    padding:0 20px;
+}
+
+/* TITULOS */
+.section-title{
+    font-size:32px;
+    margin-bottom:25px;
+    position:relative;
+}
+
+.section-title::after{
+    content:"";
+    width:60px;
+    height:3px;
+    background:var(--accent);
+    position:absolute;
+    bottom:-8px;
+    left:0;
+}
+
+/* FICHA TECNICA */
 .specs{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:30px;
     margin-top:40px;
-    line-height:1.8;
+    font-size:18px;
 }
 
-footer{
-    background:#111;
+/* CORES */
+.colors{
+    display:flex;
+    gap:40px;
+    margin-top:40px;
+}
+
+.color-box{
     text-align:center;
-    padding:20px;
+    transition:0.4s ease;
+}
+
+.color-circle{
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    margin:0 auto;
+    border:2px solid #ccc;
+    transition:0.4s ease;
+}
+
+.color-name{
+    margin-top:12px;
+    font-size:14px;
+    opacity:0.7;
+    transition:0.4s ease;
+}
+
+.color-box:hover{
+    transform:translateY(-5px);
+}
+
+.color-box:hover .color-circle{
+    transform:scale(1.2);
+    box-shadow:0 0 20px rgba(0,0,0,0.2);
+}
+
+.color-box:hover .color-name{
+    opacity:1;
+}
+
+/* GALERIA */
+.gallery{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:25px;
     margin-top:50px;
 }
+
+.gallery img{
+    width:100%;
+    border-radius:8px;
+    transition:0.4s ease;
+}
+
+.gallery img:hover{
+    transform:scale(1.02);
+}
+
+/* FOOTER */
+footer{
+    background:var(--dark);
+    color:white;
+    text-align:center;
+    padding:30px;
+    margin-top:100px;
+}
+
 </style>
 </head>
 
 <body>
 
-<header>
+<!-- HERO -->
+<section class="hero">
+<div>
 <h1>Audi RS6 Avant</h1>
-</header>
+<div class="price">R$ 1.199.000</div>
 
+<div class="buttons">
+<div class="btn" onclick="window.location.href='pagamento.html'">Comprar</div>
+<div class="btn" onclick="window.location.href='agendamento.html'">Agendar Test Drive</div>
+</div>
+</div>
+</section>
+
+<!-- CONTEÚDO -->
 <div class="container">
 
-<div class="car">
-
-<img src="https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?q=80&w=2000">
-
-<div>
-<div class="badge">🚀 Alta Performance</div>
-
-<h2>2024 Audi RS6 Avant Performance</h2>
-
-<div class="price">R$ 1.259.000</div>
-
-<p>
-A station wagon mais insana do mercado.
-Combinação perfeita entre luxo, espaço e brutalidade.
-</p>
-
-<p><strong>Cores disponíveis:</strong><br>
-Cinza Nardo<br>
-Preto Mythos<br>
-Azul Navarra<br>
-Branco Glacier
-</p>
-
-<br>
-
-<button onclick="window.location.href='pagamento.html'">
-Comprar Agora
-</button>
-
-<button onclick="window.location.href='agendamento.html'">
-Agendar Test Drive
-</button>
-
-</div>
-
-</div>
+<h2 class="section-title">Ficha Técnica</h2>
 
 <div class="specs">
-<h3>Ficha Técnica</h3>
-
+<div>
+Motor: 4.0 V8 Biturbo<br>
 Potência: 600 cv<br>
-Motor: V8 4.0 Biturbo<br>
-0-100 km/h: 3.6s<br>
-Tração: Quattro AWD<br>
-Transmissão: Tiptronic 8 marchas<br>
-Interior: Couro + Carbono + Sistema Virtual Cockpit<br>
-Porta-malas: 565 litros<br>
-Quilometragem: 0 km<br>
+0–100 km/h: 3.6s
+</div>
 
+<div>
+Transmissão: Tiptronic 8 marchas<br>
+Tração: Quattro AWD<br>
+Quilometragem: 0 km
+</div>
+</div>
+
+<h2 class="section-title">Cores de Fábrica Disponíveis</h2>
+
+<div class="colors">
+
+<div class="color-box">
+<div class="color-circle" style="background:#ffffff;"></div>
+<div class="color-name">Branco Glacier</div>
+</div>
+
+<div class="color-box">
+<div class="color-circle" style="background:#1c1c1c;"></div>
+<div class="color-name">Preto Mythos</div>
+</div>
+
+<div class="color-box">
+<div class="color-circle" style="background:#6e6e6e;"></div>
+<div class="color-name">Cinza Nardo</div>
+</div>
+
+</div>
+
+<h2 class="section-title">Galeria</h2>
+
+<div class="gallery">
+<img src="https://images.unsplash.com/photo-1617814076668-7b2d88f8cda7?q=80&w=2000">
+<img src="https://images.unsplash.com/photo-1590362891991-f776e747a588?q=80&w=2000">
 </div>
 
 </div>
