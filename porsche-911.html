@@ -250,30 +250,11 @@ Seu navegador não suporta vídeo.
 © 2026 IMD Parts Dealerships
 </footer>
 
-<script>
-
-function changeColor(option, element){
-
-document.querySelectorAll(".color").forEach(c => c.classList.remove("active"));
-element.classList.add("active");
-
-let car = document.getElementById("carImage");
-
-if(option === 1){
-car.src = "https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=2000";
-}
-
-if(option === 2){
-car.src = "https://images.unsplash.com/photo-1616789916434-4b26b6f5b59d?q=80&w=2000";
-}
-
-if(option === 3){
-car.src = "https://images.unsplash.com/photo-1549924231-f129b911e442?q=80&w=2000";
-}
-
-}
-
-</script>
+<div class="color-options">
+<div class="color active" style="background:white;" onclick="changeColor(1,this)"></div>
+<div class="color" style="background:black;" onclick="changeColor(2,this)"></div>
+<div class="color" style="background:red;" onclick="changeColor(3,this)"></div>
+</div>
 
 </body>
 </html>
