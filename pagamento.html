@@ -97,8 +97,9 @@ button:hover{
     margin-top:20px;
     padding:15px;
     background:white;
-    border-radius:10px;
+    border-radius:12px;
     display:inline-block;
+    box-shadow:0 0 25px rgba(255,255,255,0.15);
 }
 
 .pix-key{
@@ -155,18 +156,20 @@ Pagamento Seguro – IMD Parts
 <div id="boletoMsg" class="success"></div>
 </div>
 
-<!-- PIX -->
+<!-- PIX FIXO -->
 <div class="card">
 <h3>📲 Pix</h3>
-<p>Gerar QR Code automático:</p>
+<p>Escaneie o QR Code abaixo para pagamento:</p>
 
 <div class="qrcode">
-<img id="pixQR" width="180">
+<img src="qrcode-pix.jpeg" width="200" alt="QR Code Pix IMD Parts">
 </div>
 
-<div class="pix-key" id="pixKey"></div>
+<div class="pix-key">
+Chave Pix: 47903923846
+</div>
 
-<button onclick="gerarPix()">Gerar Pix</button>
+<button onclick="confirmarPix()">Já Realizei o Pagamento</button>
 <div id="pixMsg" class="success"></div>
 </div>
 
@@ -180,20 +183,18 @@ Pagamento Seguro – IMD Parts
 <script>
 
 function simularPagamento(){
-    document.getElementById("cardMsg").innerText = "Pagamento aprovado com sucesso (simulação).";
+    document.getElementById("cardMsg").innerText =
+    "Pagamento aprovado com sucesso (simulação).";
 }
 
 function gerarBoleto(){
-    document.getElementById("boletoMsg").innerText = "Boleto gerado com vencimento em 3 dias (simulação).";
+    document.getElementById("boletoMsg").innerText =
+    "Boleto gerado com vencimento em 3 dias (simulação).";
 }
 
-function gerarPix(){
-    const chave = "IMDPARTS-" + Math.floor(Math.random()*1000000000);
-    const qrURL = "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=" + chave;
-
-    document.getElementById("pixQR").src = qrURL;
-    document.getElementById("pixKey").innerText = "Chave Pix: " + chave;
-    document.getElementById("pixMsg").innerText = "QR Code gerado com sucesso.";
+function confirmarPix(){
+    document.getElementById("pixMsg").innerText =
+    "Pagamento via Pix aguardando confirmação.";
 }
 
 </script>
