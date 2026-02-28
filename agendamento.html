@@ -132,37 +132,33 @@ Agendamento Premium – IMD Parts
 <button type="submit">Confirmar Agendamento</button>
 <div id="mensagem"></div>
 
-</form>
-</div>
+<form action="https://formsubmit.co/souza.helder.2018@gmail.com" method="POST">
 
-<h2>Agende um Test Drive</h2>
+    <!-- Impede spam -->
+    <input type="hidden" name="_captcha" value="false">
 
-<div class="section">
-<form onsubmit="return agendarTestDrive(event)">
+    <!-- Assunto do email -->
+    <input type="hidden" name="_subject" value="Novo Agendamento - IMD Parts">
 
-<input type="text" id="nomeTD" placeholder="Seu Nome" required>
-<input type="tel" id="telefoneTD" placeholder="Telefone" required>
+    <!-- Redirecionar após envio -->
+    <input type="hidden" name="_next" value="https://hbalsaneli.github.io/site-de-venda-imd-parts/obrigado.html">
 
-<select id="carroTD" required>
-<option value="">Selecione o Veículo</option>
-<option>Porsche 963</option>
-<option>Audi R8</option>
-<option>Audi RS6</option>
-<option>Porsche Cayenne</option>
-<option>Porsche 911 Turbo S</option>
-</select>
+    <label>Nome:</label>
+    <input type="text" name="Nome" required>
 
-<select id="dataTD" required>
-<option value="">Selecione a Data</option>
-</select>
+    <label>Email:</label>
+    <input type="email" name="Email" required>
 
-<select id="horaTD" required>
-<option value="">Selecione o Horário</option>
-</select>
+    <label>Telefone:</label>
+    <input type="text" name="Telefone" required>
 
-<button type="submit">Agendar Test Drive</button>
-<div id="mensagemTD"></div>
+    <label>Data:</label>
+    <select name="Data" required id="dataSelect"></select>
 
+    <label>Horário:</label>
+    <select name="Horario" required id="horaSelect"></select>
+
+    <button type="submit">Agendar</button>
 </form>
 </div>
 
