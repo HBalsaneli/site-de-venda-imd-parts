@@ -121,16 +121,15 @@ Agendamento Premium – IMD Parts
 <option>Check-up Premium</option>
 </select>
 
-<select id="dataTD" required>
+<select id="dataServico" required>
 <option value="">Selecione a Data</option>
 </select>
 
-<select id="dataTD" required>
+<select id="horaServico" required>
 <option value="">Selecione o Horário</option>
 </select>
 
 <button type="submit">Confirmar Agendamento</button>
-
 <div id="mensagem"></div>
 
 </form>
@@ -157,12 +156,11 @@ Agendamento Premium – IMD Parts
 <option value="">Selecione a Data</option>
 </select>
 
-<select id="dataTD" required>
+<select id="horaTD" required>
 <option value="">Selecione o Horário</option>
 </select>
 
 <button type="submit">Agendar Test Drive</button>
-
 <div id="mensagemTD"></div>
 
 </form>
@@ -176,7 +174,7 @@ Agendamento Premium – IMD Parts
 
 <script>
 
-// ===== FERIADOS 2026 (adicione mais se quiser) =====
+// ===== FERIADOS 2026 =====
 const feriados2026 = [
 "2026-01-01",
 "2026-04-03",
@@ -189,7 +187,7 @@ const feriados2026 = [
 "2026-12-25"
 ];
 
-// ===== GERAR DATAS DISPONÍVEIS =====
+// ===== GERAR DATAS =====
 function gerarDatas(selectId){
     const select = document.getElementById(selectId);
 
@@ -197,18 +195,17 @@ function gerarDatas(selectId){
         for(let dia=1; dia<=31; dia++){
 
             let data = new Date(2026, mes, dia);
-
             if(data.getFullYear() !== 2026) continue;
 
             let diaSemana = data.getDay();
             let dataFormatada = data.toISOString().split('T')[0];
 
-            if(diaSemana === 0) continue; // remove domingo
+            if(diaSemana === 0) continue;
             if(feriados2026.includes(dataFormatada)) continue;
 
             let option = document.createElement("option");
             option.value = dataFormatada;
-            option.text = dataFormatada.split("-").reverse().join("/");
+            option.textContent = dataFormatada.split("-").reverse().join("/");
 
             select.appendChild(option);
         }
@@ -221,9 +218,11 @@ function gerarHorarios(selectId){
 
     for(let h=7; h<=21; h++){
         let hora = (h<10 ? "0"+h : h) + ":00";
+
         let option = document.createElement("option");
         option.value = hora;
-        option.text = hora;
+        option.textContent = hora;
+
         select.appendChild(option);
     }
 }
@@ -232,8 +231,8 @@ function gerarHorarios(selectId){
 function salvarAgendamento(event){
     event.preventDefault();
 
-    let data = document.getElementById("data").value;
-    let hora = document.getElementById("hora").value;
+    let data = document.getElementById("dataServico").value;
+    let hora = document.getElementById("horaServico").value;
     let chave = "servico_" + data + "_" + hora;
 
     if(localStorage.getItem(chave)){
@@ -273,13 +272,13 @@ function agendarTestDrive(event){
     return false;
 }
 
-// ===== INICIAR SISTEMA =====
+// ===== INICIAR =====
 window.onload = function(){
 
-    gerarDatas("data");
+    gerarDatas("dataServico");
     gerarDatas("dataTD");
 
-    gerarHorarios("hora");
+    gerarHorarios("horaServico");
     gerarHorarios("horaTD");
 
 }
