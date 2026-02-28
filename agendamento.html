@@ -3,34 +3,44 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Agendamento de Serviços - IMD Parts</title>
+<title>Agendamento Premium – IMD Parts</title>
 
 <style>
 body{
     margin:0;
     font-family: Arial, Helvetica, sans-serif;
-    background:#f4f4f4;
+    background:linear-gradient(135deg,#0f0f0f,#1a1a1a);
+    color:white;
 }
 
 header{
-    background:#111;
-    color:white;
-    padding:20px;
+    background:#000;
+    padding:25px;
     text-align:center;
+    letter-spacing:2px;
+    border-bottom:1px solid #222;
 }
 
 .container{
-    max-width:800px;
-    margin:50px auto;
-    background:white;
+    max-width:1000px;
+    margin:60px auto;
     padding:40px;
-    border-radius:10px;
-    box-shadow:0 4px 20px rgba(0,0,0,0.1);
 }
 
 h2{
     text-align:center;
-    margin-bottom:30px;
+    margin-bottom:40px;
+    font-weight:300;
+    letter-spacing:2px;
+}
+
+.section{
+    background:#181818;
+    padding:30px;
+    border-radius:15px;
+    margin-bottom:40px;
+    box-shadow:0 10px 40px rgba(0,0,0,0.5);
+    border:1px solid #222;
 }
 
 form{
@@ -41,30 +51,47 @@ form{
 
 input, select{
     padding:12px;
-    border:1px solid #ccc;
-    border-radius:5px;
+    border-radius:6px;
+    border:1px solid #333;
+    background:#111;
+    color:white;
+}
+
+input:focus, select:focus{
+    outline:none;
+    border-color:#888;
 }
 
 button{
-    background:#0A1F44;
-    color:white;
+    background:white;
+    color:black;
     border:none;
     padding:12px;
-    border-radius:5px;
+    border-radius:6px;
     cursor:pointer;
-    font-size:16px;
+    font-weight:600;
+    transition:0.3s;
 }
 
 button:hover{
-    background:#061330;
+    background:#ddd;
+}
+
+.success{
+    color:#00ff99;
+    margin-top:10px;
+}
+
+.error{
+    color:#ff4d4d;
+    margin-top:10px;
 }
 
 footer{
-    background:#111;
-    color:white;
+    background:#000;
     text-align:center;
-    padding:15px;
-    margin-top:50px;
+    padding:25px;
+    border-top:1px solid #222;
 }
 </style>
 </head>
@@ -72,19 +99,21 @@ footer{
 <body>
 
 <header>
-<h1>Agendamento de Serviços</h1>
+Agendamento Premium – IMD Parts
 </header>
 
 <div class="container">
-<h2>Agende sua Revisão ou Serviço Técnico</h2>
 
-<form action="https://formsubmit.co/souza.helder.2018@gmail.com" method="POST">
+<h2>Agende seu Serviço</h2>
 
-<input type="text" name="nome" placeholder="Seu Nome" required>
-<input type="tel" name="telefone" placeholder="Telefone" required>
-<input type="text" name="veiculo" placeholder="Modelo do Veículo" required>
+<div class="section">
+<form onsubmit="return salvarAgendamento(event)">
 
-<select name="servico" required>
+<input type="text" id="nome" placeholder="Seu Nome" required>
+<input type="tel" id="telefone" placeholder="Telefone" required>
+<input type="text" id="veiculo" placeholder="Modelo do Veículo" required>
+
+<select id="servico" required>
 <option value="">Selecione o Serviço</option>
 <option>Revisão Completa</option>
 <option>Diagnóstico Técnico</option>
@@ -92,17 +121,95 @@ footer{
 <option>Check-up Premium</option>
 </select>
 
-<input type="date" name="data" required>
-<input type="time" name="hora" required>
+<input type="date" id="data" required>
+<input type="time" id="hora" required>
 
 <button type="submit">Confirmar Agendamento</button>
 
+<div id="mensagem"></div>
+
 </form>
+</div>
+
+<h2>Agende um Test Drive</h2>
+
+<div class="section">
+<form onsubmit="return agendarTestDrive(event)">
+
+<input type="text" id="nomeTD" placeholder="Seu Nome" required>
+<input type="tel" id="telefoneTD" placeholder="Telefone" required>
+
+<select id="carroTD" required>
+<option value="">Selecione o Veículo</option>
+<option>Porsche 963</option>
+<option>Audi R8</option>
+<option>Audi RS6</option>
+<option>Porsche Cayenne</option>
+<option>Porsche 911 Turbo S</option>
+</select>
+
+<input type="date" id="dataTD" required>
+<input type="time" id="horaTD" required>
+
+<button type="submit">Agendar Test Drive</button>
+
+<div id="mensagemTD"></div>
+
+</form>
+</div>
+
 </div>
 
 <footer>
 © 2026 IMD Parts Dealerships
 </footer>
+
+<script>
+
+function salvarAgendamento(event){
+    event.preventDefault();
+
+    let data = document.getElementById("data").value;
+    let hora = document.getElementById("hora").value;
+    let chave = "servico_" + data + "_" + hora;
+
+    if(localStorage.getItem(chave)){
+        document.getElementById("mensagem").innerHTML =
+        "<div class='error'>Este horário já está reservado.</div>";
+        return false;
+    }
+
+    localStorage.setItem(chave, "reservado");
+
+    document.getElementById("mensagem").innerHTML =
+    "<div class='success'>Agendamento confirmado com sucesso.</div>";
+
+    return false;
+}
+
+function agendarTestDrive(event){
+    event.preventDefault();
+
+    let carro = document.getElementById("carroTD").value;
+    let data = document.getElementById("dataTD").value;
+    let hora = document.getElementById("horaTD").value;
+    let chave = "testdrive_" + carro + "_" + data + "_" + hora;
+
+    if(localStorage.getItem(chave)){
+        document.getElementById("mensagemTD").innerHTML =
+        "<div class='error'>Este horário para este veículo já foi reservado.</div>";
+        return false;
+    }
+
+    localStorage.setItem(chave, "reservado");
+
+    document.getElementById("mensagemTD").innerHTML =
+    "<div class='success'>Test Drive agendado com sucesso.</div>";
+
+    return false;
+}
+
+</script>
 
 </body>
 </html>
