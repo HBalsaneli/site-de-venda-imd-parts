@@ -3,71 +3,106 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Agendamento Premium – IMD Parts</title>
+<title>Agendamento & Pagamento Premium – IMD Parts</title>
 
 <style>
-body{
+
+/* ===========================
+   RESET E CONFIGURAÇÕES GERAIS
+=========================== */
+
+*{
     margin:0;
-    font-family: Arial, Helvetica, sans-serif;
-    background:linear-gradient(135deg,#0f0f0f,#1a1a1a);
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(135deg,#0f0f0f,#1c1c1c);
     color:white;
 }
 
-header{
-    background:#000;
-    padding:25px;
-    text-align:center;
-    letter-spacing:2px;
-    border-bottom:1px solid #222;
-}
-
-.container{
-    max-width:1000px;
-    margin:60px auto;
-    padding:40px;
-}
-
-h2{
-    text-align:center;
-    margin-bottom:40px;
+h1,h2,h3{
     font-weight:300;
     letter-spacing:2px;
 }
 
-.section{
+.container{
+    max-width:1200px;
+    margin:60px auto;
+    padding:40px;
+}
+
+/* ===========================
+   HEADER
+=========================== */
+
+header{
+    background:#000;
+    padding:30px;
+    text-align:center;
+    border-bottom:1px solid #222;
+}
+
+header h1{
+    font-size:26px;
+}
+
+/* ===========================
+   CARDS
+=========================== */
+
+.section-title{
+    margin-bottom:30px;
+    text-align:center;
+}
+
+.card{
     background:#181818;
     padding:30px;
-    border-radius:15px;
-    margin-bottom:40px;
-    box-shadow:0 10px 40px rgba(0,0,0,0.5);
+    border-radius:18px;
     border:1px solid #222;
+    box-shadow:0 15px 45px rgba(0,0,0,0.6);
+    margin-bottom:50px;
+    transition:0.4s;
 }
+
+.card:hover{
+    transform:translateY(-5px);
+    border-color:#444;
+}
+
+/* ===========================
+   FORMULÁRIOS
+=========================== */
 
 form{
     display:flex;
     flex-direction:column;
-    gap:15px;
+    gap:18px;
 }
 
 input, select{
-    padding:12px;
-    border-radius:6px;
+    padding:14px;
+    border-radius:8px;
     border:1px solid #333;
     background:#111;
     color:white;
+    font-size:14px;
 }
 
 input:focus, select:focus{
     outline:none;
-    border-color:#888;
+    border-color:#777;
 }
 
 button{
     background:white;
     color:black;
+    padding:14px;
+    border-radius:8px;
     border:none;
-    padding:12px;
-    border-radius:6px;
     cursor:pointer;
     font-weight:600;
     transition:0.3s;
@@ -87,33 +122,52 @@ button:hover{
     margin-top:10px;
 }
 
+/* ===========================
+   GRID
+=========================== */
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(450px,1fr));
+    gap:50px;
+}
+
+/* ===========================
+   FOOTER
+=========================== */
+
 footer{
     background:#000;
     text-align:center;
-    padding:25px;
+    padding:30px;
     border-top:1px solid #222;
+    margin-top:60px;
 }
+
 </style>
 </head>
-
 <body>
 
 <header>
-Agendamento Premium – IMD Parts
+<h1>IMD Parts – Sistema Premium de Agendamento</h1>
 </header>
 
 <div class="container">
 
-<h2>Agende seu Serviço</h2>
+<div class="grid">
 
-<div class="section">
-<form onsubmit="return salvarAgendamento(event)">
+<!-- ================= SERVIÇOS ================= -->
 
-<input type="text" id="nome" placeholder="Seu Nome" required>
-<input type="tel" id="telefone" placeholder="Telefone" required>
-<input type="text" id="veiculo" placeholder="Modelo do Veículo" required>
+<div class="card">
+<h2 class="section-title">Agendamento de Serviços</h2>
 
-<select id="servico" required>
+<form id="formServico">
+
+<input type="text" name="Nome" placeholder="Seu Nome" required>
+<input type="tel" name="Telefone" placeholder="Telefone" required>
+<input type="text" name="Veiculo" placeholder="Modelo do Veículo" required>
+
+<select name="Servico" required>
 <option value="">Selecione o Serviço</option>
 <option>Revisão Completa</option>
 <option>Diagnóstico Técnico</option>
@@ -121,47 +175,56 @@ Agendamento Premium – IMD Parts
 <option>Check-up Premium</option>
 </select>
 
-<select id="dataServico" required>
+<select name="Data" id="dataServico" required>
 <option value="">Selecione a Data</option>
 </select>
 
-<select id="horaServico" required>
+<select name="Horario" id="horaServico" required>
 <option value="">Selecione o Horário</option>
 </select>
 
-<button type="submit">Confirmar Agendamento</button>
-<div id="mensagem"></div>
+<button type="submit">Confirmar Serviço</button>
 
-<form action="https://formsubmit.co/souza.helder.2018@gmail.com" method="POST">
+<div id="msgServico"></div>
 
-    <!-- Impede spam -->
-    <input type="hidden" name="_captcha" value="false">
-
-    <!-- Assunto do email -->
-    <input type="hidden" name="_subject" value="Novo Agendamento - IMD Parts">
-
-    <!-- Redirecionar após envio -->
-    <input type="hidden" name="_next" value="https://hbalsaneli.github.io/site-de-venda-imd-parts/obrigado.html">
-
-    <label>Nome:</label>
-    <input type="text" name="Nome" required>
-
-    <label>Email:</label>
-    <input type="email" name="Email" required>
-
-    <label>Telefone:</label>
-    <input type="text" name="Telefone" required>
-
-    <label>Data:</label>
-    <select name="Data" required id="dataSelect"></select>
-
-    <label>Horário:</label>
-    <select name="Horario" required id="horaSelect"></select>
-
-    <button type="submit">Agendar</button>
 </form>
 </div>
 
+<!-- ================= TEST DRIVE ================= -->
+
+<div class="card">
+<h2 class="section-title">Agendamento Test Drive</h2>
+
+<form id="formTestDrive">
+
+<input type="text" name="Nome" placeholder="Seu Nome" required>
+<input type="tel" name="Telefone" placeholder="Telefone" required>
+
+<select name="Veiculo" required>
+<option value="">Selecione o Veículo</option>
+<option>Porsche 963</option>
+<option>Audi R8</option>
+<option>Audi RS6</option>
+<option>Porsche Cayenne</option>
+<option>Porsche 911 Turbo S</option>
+</select>
+
+<select name="Data" id="dataTD" required>
+<option value="">Selecione a Data</option>
+</select>
+
+<select name="Horario" id="horaTD" required>
+<option value="">Selecione o Horário</option>
+</select>
+
+<button type="submit">Agendar Test Drive</button>
+
+<div id="msgTD"></div>
+
+</form>
+</div>
+
+</div>
 </div>
 
 <footer>
@@ -170,50 +233,64 @@ Agendamento Premium – IMD Parts
 
 <script>
 
-// ===== FERIADOS 2026 =====
-const feriados2026 = [
-"2026-01-01",
-"2026-04-03",
-"2026-04-21",
-"2026-05-01",
-"2026-09-07",
-"2026-10-12",
-"2026-11-02",
-"2026-11-15",
-"2026-12-25"
+/* ===============================
+   CONFIGURAÇÃO EMAIL
+================================ */
+
+const EMAIL = "souza.helder.2018@gamil.com";
+
+/* ===============================
+   FERIADOS 2026
+================================ */
+
+const feriados = [
+"2026-01-01","2026-04-03","2026-04-21","2026-05-01",
+"2026-09-07","2026-10-12","2026-11-02","2026-11-15","2026-12-25"
 ];
 
-// ===== GERAR DATAS =====
+/* ===============================
+   GERAR DATAS CORRETAMENTE
+================================ */
+
 function gerarDatas(selectId){
     const select = document.getElementById(selectId);
 
-    for(let mes=0; mes<12; mes++){
-        for(let dia=1; dia<=31; dia++){
+    let inicio = new Date("2026-01-01");
+    let fim = new Date("2026-12-31");
 
-            let data = new Date(2026, mes, dia);
-            if(data.getFullYear() !== 2026) continue;
+    while(inicio <= fim){
 
-            let diaSemana = data.getDay();
-            let dataFormatada = data.toISOString().split('T')[0];
+        let diaSemana = inicio.getDay();
+        let iso = inicio.toISOString().split("T")[0];
 
-            if(diaSemana === 0) continue;
-            if(feriados2026.includes(dataFormatada)) continue;
+        if(diaSemana !== 0 && !feriados.includes(iso)){
 
             let option = document.createElement("option");
-            option.value = dataFormatada;
-            option.textContent = dataFormatada.split("-").reverse().join("/");
+            option.value = iso;
+
+            let formatada =
+            iso.split("-").reverse().join("/");
+
+            option.textContent = formatada;
 
             select.appendChild(option);
         }
+
+        inicio.setDate(inicio.getDate()+1);
     }
 }
 
-// ===== GERAR HORÁRIOS =====
+/* ===============================
+   GERAR HORÁRIOS 07h às 21h
+================================ */
+
 function gerarHorarios(selectId){
+
     const select = document.getElementById(selectId);
 
     for(let h=7; h<=21; h++){
-        let hora = (h<10 ? "0"+h : h) + ":00";
+
+        let hora = (h<10?"0"+h:h)+":00";
 
         let option = document.createElement("option");
         option.value = hora;
@@ -223,52 +300,97 @@ function gerarHorarios(selectId){
     }
 }
 
-// ===== BLOQUEIO SERVIÇO =====
-function salvarAgendamento(event){
-    event.preventDefault();
+/* ===============================
+   ENVIO EMAIL
+================================ */
 
-    let data = document.getElementById("dataServico").value;
-    let hora = document.getElementById("horaServico").value;
-    let chave = "servico_" + data + "_" + hora;
+function enviarEmail(dados){
 
-    if(localStorage.getItem(chave)){
-        document.getElementById("mensagem").innerHTML =
-        "<div class='error'>Este horário já está reservado.</div>";
-        return false;
-    }
+    const form = document.createElement("form");
+    form.action = "https://formsubmit.co/" + EMAIL;
+    form.method = "POST";
 
-    localStorage.setItem(chave, "reservado");
+    form.innerHTML = `
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_subject" value="Novo Agendamento IMD Parts">
+    <input type="hidden" name="Tipo" value="${dados.tipo}">
+    <input type="hidden" name="Nome" value="${dados.nome}">
+    <input type="hidden" name="Telefone" value="${dados.telefone}">
+    <input type="hidden" name="Veiculo" value="${dados.veiculo}">
+    <input type="hidden" name="Servico" value="${dados.servico}">
+    <input type="hidden" name="Data" value="${dados.data}">
+    <input type="hidden" name="Horario" value="${dados.hora}">
+    `;
 
-    document.getElementById("mensagem").innerHTML =
-    "<div class='success'>Agendamento confirmado com sucesso.</div>";
-
-    return false;
+    document.body.appendChild(form);
+    form.submit();
 }
 
-// ===== BLOQUEIO TEST DRIVE =====
-function agendarTestDrive(event){
-    event.preventDefault();
+/* ===============================
+   BLOQUEIO E ENVIO
+================================ */
 
-    let carro = document.getElementById("carroTD").value;
-    let data = document.getElementById("dataTD").value;
-    let hora = document.getElementById("horaTD").value;
-    let chave = "testdrive_" + carro + "_" + data + "_" + hora;
+document.getElementById("formServico").onsubmit = function(e){
+
+    e.preventDefault();
+
+    let data = this.Data.value;
+    let hora = this.Horario.value;
+
+    let chave = "servico_"+data+"_"+hora;
 
     if(localStorage.getItem(chave)){
-        document.getElementById("mensagemTD").innerHTML =
-        "<div class='error'>Este horário para este veículo já foi reservado.</div>";
-        return false;
+        document.getElementById("msgServico").innerHTML =
+        "<div class='error'>Horário já reservado.</div>";
+        return;
     }
 
-    localStorage.setItem(chave, "reservado");
+    localStorage.setItem(chave,"ocupado");
 
-    document.getElementById("mensagemTD").innerHTML =
-    "<div class='success'>Test Drive agendado com sucesso.</div>";
+    enviarEmail({
+        tipo:"Serviço",
+        nome:this.Nome.value,
+        telefone:this.Telefone.value,
+        veiculo:this.Veiculo.value,
+        servico:this.Servico.value,
+        data:data,
+        hora:hora
+    });
+};
 
-    return false;
-}
+document.getElementById("formTestDrive").onsubmit = function(e){
 
-// ===== INICIAR =====
+    e.preventDefault();
+
+    let data = this.Data.value;
+    let hora = this.Horario.value;
+    let veiculo = this.Veiculo.value;
+
+    let chave = "td_"+veiculo+"_"+data+"_"+hora;
+
+    if(localStorage.getItem(chave)){
+        document.getElementById("msgTD").innerHTML =
+        "<div class='error'>Horário já reservado para este veículo.</div>";
+        return;
+    }
+
+    localStorage.setItem(chave,"ocupado");
+
+    enviarEmail({
+        tipo:"Test Drive",
+        nome:this.Nome.value,
+        telefone:this.Telefone.value,
+        veiculo:veiculo,
+        servico:"Test Drive",
+        data:data,
+        hora:hora
+    });
+};
+
+/* ===============================
+   INICIAR
+================================ */
+
 window.onload = function(){
 
     gerarDatas("dataServico");
@@ -276,8 +398,7 @@ window.onload = function(){
 
     gerarHorarios("horaServico");
     gerarHorarios("horaTD");
-
-}
+};
 
 </script>
 
